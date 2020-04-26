@@ -1,18 +1,19 @@
 package main
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 )
 
 func handle(w http.ResponseWriter, req *http.Request) {
-	query := req.URL.RawQuery
-
 	defer req.Body.Close()
 	requestBytes, _ := ioutil.ReadAll(req.Body)
 
-	response := make([]byte, len(query)+len(requestBytes))
-	response = append(response, query...)
+	var jsonMap map[string]json.RawMessage
+	_ = json.Unmarshal(requestBytes, &jsonMap)
+
+	response := make([]byte, len(requestBytes))
 	response = append(response, requestBytes...)
 
 	w.WriteHeader(200)
