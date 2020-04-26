@@ -19,6 +19,7 @@ public class SimpleHttpJava {
         System.arraycopy(requestBytes, 0, response, queryBytes.length, requestBytes.length);
 
         exchange.sendResponseHeaders(200, responseSize);
+
         exchange.getResponseBody().write(response);
         exchange.getResponseBody().flush();
 

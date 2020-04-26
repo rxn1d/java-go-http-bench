@@ -1,2 +1,2 @@
 POST http://localhost:8000/bench?query=abc
-body: ""
+@/Users/user/projects/blog-projects/java-go-http-bench/test_body.txt
